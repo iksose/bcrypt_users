@@ -1,0 +1,34 @@
+<h4>Welcome to the Database</h4>
+
+<div class="row">
+	<div class="col-xs-6 col-sm-6">
+		<h5>Mongoose</h5>
+		<div ng-repeat="friends in movieList">
+		{{friends.title}}
+		</div>
+		<div class="input-group col-sm-5">
+		      <input type="text" class="form-control" ng-model="movieModel.title">
+		      <span class="input-group-btn">
+		        <button class="btn btn-default" type="button" ng-click='AddMovie()'>Add</button>
+		      </span>
+		</div><!-- /input-group -->
+	</div>
+
+
+<form action="/dmz/login" method="post">
+	<div>
+	<label>Username:</label>
+	<input type="text" name="username"/><br/>
+	</div>
+	<div>
+	<label>Password:</label>
+	<input type="password" name="password"/>
+	</div>
+	<div>
+	<input type="submit" value="Submit"/>
+	</div>
+</form>
+
+<a href="/dmz/logout">Logout</button>
+
+</div>
