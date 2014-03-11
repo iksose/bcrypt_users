@@ -4,7 +4,7 @@ angular.module('uiRouterSample')
     
 
     var saveMovie = function(obj){
-            return $http.post("/movies", obj)
+        return $http.post("secure/admin/movies", obj)
     }
 
     var getMovies = function(){
@@ -13,10 +13,6 @@ angular.module('uiRouterSample')
 
     getMovies().success(handleSuccess2)
 
-    function handleSuccess2(data, status){
-        console.log(data, status)
-        $scope.movieList = data;
-    }
 
     //MOVIES on MONGOOSE :
 
@@ -34,7 +30,7 @@ angular.module('uiRouterSample')
     }
     $scope.AddMovie = function(){
         console.log("ADDING", $scope.movieModel )
-        wineFactory.saveMovie($scope.movieModel).
+        saveMovie($scope.movieModel).
             success(function(data, status, headers, config) {
             // this callback will be called asynchronously
             // when the response is available

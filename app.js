@@ -56,6 +56,7 @@ app.get('/secure/account', user_routes.account);
 app.get('/secure/admin', user_routes.admin);
 
 app.get('/secure/admin/movies', pass.ensureAdmin, movie.findAll);
+app.post('/secure/admin/movies', pass.ensureAdmin, movie.addMovie)
 
 app.listen(3000, function () {
     console.log('Express server listening on port 3000');
