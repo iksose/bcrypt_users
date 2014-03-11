@@ -40,7 +40,10 @@ exports.postlogin = function(req, res, next) {
     }
     req.logIn(user, function(err) {
       if (err) { return next(err); }
-      return res.redirect('/');
+      // return res.redirect('/');
+      //would redirect you to / after logging in
+      //we'd like to let angular just receive the auth headers
+      res.send(200, { user: req.user })
     });
   })(req, res, next);
 };

@@ -45,7 +45,18 @@ angular.module('uiRouterSample')
               '<p>Use the menu above to navigate. ' +
               'Pay attention to the <code>$state</code> and <code>$stateParams</code> values below.</p>' +
               '<p>Click these links—<a href="#/c?id=1">Alice</a> or ' +
-              '<a href="#/user/42">Bob</a>—to see a url redirect in action.</p>'
+              '<a href="#/user/42">Bob</a>—to see a url redirect in action.</p>',
+            controller: ['$scope', '$state', '$http', 'utils',
+              function (  $scope,   $state,   $http,   utils, $resource) {
+
+                // Add a 'contacts' field in this abstract parent's scope, so that all
+                // child state views can access it in their scopes. Please note: scope
+                // inheritance is not due to nesting of states, but rather choosing to
+                // nest the templates of those states. It's normal scope inheritance.
+
+                  console.log("Welcome home")
+
+              }]
 
           })
 

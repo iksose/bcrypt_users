@@ -1,5 +1,5 @@
 angular.module('uiRouterSample')
-.controller("dbController" ,function ($scope, $state, $http) {
+.controller("dbController" ,function ($scope, $state, $http, loginFactory) {
     console.log("Hello from dbController", $state)
     
 
@@ -42,6 +42,39 @@ angular.module('uiRouterSample')
             console.log("ERROR", status, data.ErrorMsg)
             });
     }
+
+
+    $scope.login = function(){
+        console.log("Logging in...", $scope.credentials)
+        var credits = $scope.credentials
+        loginFactory.postLogin(credits)
+            .success(handleSuccess)
+    }
+
+    function handleSuccess(data, status){
+        console.log("Success....", data, status)
+    }
+
+    $scope.credentials = {}
     
 
 });
+
+angular.module('uiRouterSample')
+    // A RESTful factory for retreiving contacts from 'contacts.json'
+
+.factory('loginFactory', function($http){
+    console.log("Hello from login Factory")
+    return {
+        postLogin: function(loginInfo) {
+            console.log("POST DUDE", loginInfo)
+            return $http({
+                method: 'POST',
+                url: '/dmz/login',
+                // data: params,
+                params: loginInfo,
+                headers : { 'Content-Type': 'application/x-www-form-urlencoded' } 
+            });
+        }
+    }
+    })
