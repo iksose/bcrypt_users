@@ -48,7 +48,6 @@ angular.module('uiRouterSample')
         console.log("Logging in...", $scope.credentials)
         var credits = $scope.credentials
         loginFactory.postLogin(credits)
-            .success(handleSuccess)
     }
 
     function handleSuccess(data, status){
@@ -56,6 +55,7 @@ angular.module('uiRouterSample')
     }
 
     $scope.credentials = {}
+
     
 
 });
@@ -65,16 +65,24 @@ angular.module('uiRouterSample')
 
 .factory('loginFactory', function($http){
     console.log("Hello from login Factory")
+    var currentUser;
     return {
         postLogin: function(loginInfo) {
             console.log("POST DUDE", loginInfo)
-            return $http({
+            $http({
                 method: 'POST',
                 url: '/dmz/login',
                 // data: params,
                 params: loginInfo,
                 headers : { 'Content-Type': 'application/x-www-form-urlencoded' } 
-            });
+            })
+            .success(function(data, status){
+                console.log("SUCCESS!!!", data, status)
+                currentUser = data.user
+            })
+            .error(function(data, status){
+                console.log("Failure...", data, status)
+            })
         }
     }
     })

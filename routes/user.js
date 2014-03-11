@@ -36,7 +36,8 @@ exports.postlogin = function(req, res, next) {
     if (err) { return next(err) }
     if (!user) {
       req.session.messages =  [info.message];
-      return res.redirect('/login')
+      // return res.redirect('/login')
+      res.send(400, { error: err } )
     }
     req.logIn(user, function(err) {
       if (err) { return next(err); }
